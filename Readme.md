@@ -1,98 +1,205 @@
-# React is a lightweight UI(user interface) library of Javascript
-- ###  React is developed by Jordan Walke, a software engineer at Facebook
-- in 2011
-Walke created a prototype called FaxJS, which was influenced by XHP, an HTML component library for PHP.
-- React was initially used to build Facebook's news feed.
-- React was officially released to the public in May 2013 under an open-source license
-- ## Reconciliation and diffing are key concepts in React that enable efficient updates to the user interface (UI).
+<div align="center">
 
-<h3>
-<dl>
-    <dt>Reconciliation:</dt>
-    <dd>Reconciliation is the process by which React determines what changes need to be made to the actual DOM based on updates to the component's state or props.</dd>
-</dl>
-</h3>
-<img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20220131100246/Group-2-2.jpg">
+# 🛍️ E-Commerce with AI Chatbot (Frontend)
 
-## How it works:
-### Virtual DOM: React maintains a lightweight representation of the real DOM called the Virtual DOM. When a component updates, React creates a new Virtual DOM tree based on the new state or props.
-## Diffing:
-### React then compares the new Virtual DOM with the previous one. This process is known as diffing. 
-## Minimal Updates:
-### React identifies the differences between the two Virtual DOM trees and determines the minimal set of operations required to update the real DOM.
-# Benefits:
-## Performance:
-### By updating only the necessary parts of the DOM, React minimizes the performance cost of UI updates. 
-## Declarative Approach:
-### Developers can focus on describing what the UI should look like, and React handles the underlying DOM manipulations efficiently.
+**A modern, responsive eCommerce storefront built with React 19, Vite and Tailwind CSS, powered by an AI shopping assistant**
 
-<hr>
-<hr>
-<hr>
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux%20Toolkit-2-764ABC?logo=redux&logoColor=white)
+![React Router](https://img.shields.io/badge/React%20Router-7-CA4245?logo=reactrouter&logoColor=white)
 
-# **Benefits of React**
-
-React is a powerful library for building user interfaces. Below are some of the major benefits of using React:
+</div>
 
 ---
 
-### **1. Component-Based Architecture**
-- React allows developers to create reusable, self-contained components.
-- These components can be combined to build complex UIs efficiently.
-- Promotes code reusability and maintainability.
+## 📖 Overview
+
+This is the storefront of an AI-enhanced eCommerce platform. Shoppers can browse products, read **AI-analysed reviews**, chat with an **AI shopping assistant** and manage a persistent cart, all in a polished UI with light and dark themes.
+
+It works together with the Spring Boot + Spring AI backend:
+👉 **[ECommerceWithAIChatbotBackend](https://github.com/naveenrajput8823/ECommerceWithAIChatbotBackend)**
+
+## ✨ Features
+
+### 🛒 Shopping
+- Landing page with an animated hero slider (Swiper) and a featured product grid
+- Product details page with quantity selector, add-to-cart and ratings
+- **Shopping cart** with quantity controls, subtotal, shipping fee and a free-shipping threshold
+- Cart is **persisted in `localStorage`** and survives page reloads (Redux Toolkit)
+
+### 🤖 AI-Powered
+- **Floating AI chatbot** available on every page, with conversation memory handled by the backend
+- **AI sentiment badges** on each review (Positive / Neutral / Negative) with confidence tooltip
+- **"Customers say" card**: AI-generated summary of reviews grouped by aspects such as Quality, Size and Delivery
+- Review submission with live validation feedback from the backend
+- **AI image generation** page for sellers (`/seller/list-product`)
+
+### 🎨 UI / UX
+- Fully responsive layout
+- **Light / Dark theme** that remembers your choice and respects system preference
+- Smooth animations using Motion
+- Toast notifications (React Toastify)
+- Protected routes and a custom 404 page
+
+### 🔐 Authentication (demo)
+- Register and login forms built with React Hook Form
+- Auth state through React Context and a custom `useAuth` hook
+- Protected admin dashboard route
+
+> ⚠️ Authentication is currently a **client-side demo**. Users are kept in memory and reset on page refresh. See the Roadmap.
+
+## 🧰 Tech Stack
+
+| Category        | Technology                          |
+|-----------------|-------------------------------------|
+| UI Library      | React 19                            |
+| Build Tool      | Vite 8                              |
+| Styling         | Tailwind CSS 4                      |
+| Routing         | React Router 7                      |
+| State           | Redux Toolkit, React Context        |
+| Forms           | React Hook Form                     |
+| HTTP            | Fetch API, Axios                    |
+| Animation       | Motion                              |
+| Carousel        | Swiper                              |
+| Tables          | DataTables                          |
+| Notifications   | React Toastify                      |
+| Icons           | Lucide React                        |
+| Linting         | Oxlint                              |
+
+## 🔌 Backend Integration
+
+| Feature              | Endpoint (backend)                       |
+|----------------------|------------------------------------------|
+| AI chatbot           | `POST /api/v1/openai/chat`               |
+| Image generation     | `POST /api/v1/openai/generate-image`     |
+| Fetch / add reviews  | `GET, POST /api/v1/reviews`              |
+| "Customers say"      | `POST /api/v1/reviews/insights`          |
+
+Product data is currently loaded from the public [Fake Store API](https://fakestoreapi.com).
+
+## ✅ Prerequisites
+
+- **Node.js 22 LTS** (or 20.19+)
+- **npm**
+- The [backend](https://github.com/naveenrajput8823/ECommerceWithAIChatbotBackend) running on `http://localhost:8080` (needed for chatbot, reviews and image generation)
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/naveenrajput8823/E-CommerceWithAIChatBot.git
+cd E-CommerceWithAIChatBot
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env` file in the project root (copy from `.env.example`):
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+Open **http://localhost:5173**
+
+> The backend allows requests from `http://localhost:5173` through CORS, so keep Vite on its default port.
+
+## 📜 Available Scripts
+
+| Command           | Description                       |
+|-------------------|-----------------------------------|
+| `npm run dev`     | Start the development server      |
+| `npm run build`   | Create a production build         |
+| `npm run preview` | Preview the production build      |
+| `npm run lint`    | Lint the code with Oxlint         |
+
+## 🗺️ Pages
+
+| Route                  | Description                               |
+|------------------------|-------------------------------------------|
+| `/`                    | Landing page with hero slider and products |
+| `/product/:prodId`     | Product details, reviews and AI insights  |
+| `/cart`                | Shopping cart                             |
+| `/login`               | Login                                     |
+| `/register`            | Register                                  |
+| `/about`               | About                                     |
+| `/services`            | Services                                  |
+| `/contact`             | Contact                                   |
+| `/seller/list-product` | AI image generation for sellers           |
+| `/dashboard/admin`     | Admin dashboard (login required)          |
+
+## 🏗️ Project Structure
+
+```
+├── public
+│   └── images/slides        # Hero slider images
+├── src
+│   ├── components           # ProductCard, Reviews, CustomersSay, FloatingChatbot, Navbar, Footer ...
+│   ├── context              # AuthContextWrapper, ThemeContextWrapper
+│   ├── hooks                # useAuth, useTheme
+│   ├── pages                # LandingPage, Cart, Login, Register, About, Services, Contact
+│   │   ├── admin            # Dashboard
+│   │   └── seller           # ListProduct
+│   ├── redux
+│   │   ├── slices/Cart.js   # Cart state, selectors and actions
+│   │   └── store.js
+│   ├── Layout.jsx
+│   ├── Router.jsx
+│   └── main.jsx
+├── docs                     # Learning notes and setup guides
+├── .env.example
+├── index.html
+├── package.json
+└── vite.config.js
+```
+
+## 🛣️ Roadmap
+
+- [ ] Real authentication with the backend (password hashing, JWT / cookie sessions)
+- [ ] Load products from the backend instead of the Fake Store API
+- [ ] Checkout and order history
+- [ ] Streaming (SSE) chatbot responses
+- [ ] Role-based admin and seller dashboards
+- [ ] Wishlist and product search / filters
+- [ ] Unit and end-to-end tests
+- [ ] Deployment (Vercel / Netlify)
+
+## 📚 Learning Notes
+
+React and Vite setup notes are available in the [`docs`](./docs) folder.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m "Add your feature"`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+## 👨‍💻 Author
+
+**Naveen Rajput**
+
+- GitHub: [@naveenrajput8823](https://github.com/naveenrajput8823)
 
 ---
 
-### **2. Virtual DOM for Efficient Rendering**
-- React uses a Virtual DOM to minimize direct interactions with the real DOM.
-- Changes are first applied to the Virtual DOM and then efficiently updated in the real DOM, improving performance.
+<div align="center">
 
----
+⭐ If you found this project useful, consider giving it a star!
 
-### **3. Declarative UI**
-- React makes it easy to build dynamic and interactive UIs with its declarative approach.
-- Developers define "what" the UI should look like, and React handles the rendering efficiently.
-
----
-
-### **4. Unidirectional Data Flow**
-- React follows a unidirectional data flow model, making data easier to manage and debug.
-- Parent components pass data to child components via props, ensuring a predictable data flow.
-
----
-
-### **5. Large Ecosystem and Community Support**
-- A rich ecosystem of libraries, tools, and extensions.
-- Active developer community and extensive documentation.
-- Easy integration with other libraries like Redux, React Router, etc.
-
----
-
-### **6. Cross-Platform Development**
-- React Native, built on top of React, allows for building mobile apps for iOS and Android using the same React concepts.
-- Code can be shared between web and mobile platforms.
-
----
-
-### **7. Easy to Learn and Use**
-- Focuses on plain JavaScript concepts with JSX syntax for templating.
-- Simple APIs and extensive documentation make it beginner-friendly.
-
----
-
-### **8. SEO-Friendly**
-- React supports server-side rendering (SSR) with frameworks like Next.js, making it easier to optimize for search engines.
-
----
-
-### **9. Rich Developer Tools**
-- Developer tools like React DevTools for debugging and inspecting components and their state.
-- Helps identify performance bottlenecks and understand component hierarchies.
-
----
-
-### **10. Backed by Facebook and Industry Leaders**
-- React is maintained by Facebook and is trusted by many large organizations like Airbnb, Netflix, and Uber.
-- Regular updates and enhancements ensure React remains relevant and up-to-date.
-
----
+</div>
